@@ -3,117 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư Mời Họp Lớp 20 Năm Ngày Ra Trường - THPT Ngọc Lặc</title>
+    <title>Thư Mời Họp Lớp 20 Năm - THPT Ngọc Lặc</title>
     <style>
-        body {
-            font-family: 'Times New Roman', Times, serif, Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            color: #333;
+        /* [Giữ nguyên phần CSS cũ của Thư mời ở trên] */
+        body { font-family: 'Times New Roman', Times, serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .invitation-card { max-width: 600px; margin: 0 auto; background: #ffffff; border: 2px solid #d4af37; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border-radius: 8px; overflow: hidden; }
+        .hero-banner { background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(15, 32, 39, 0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop') no-repeat center center; background-size: cover; padding: 40px 20px; text-align: center; color: #ffffff; }
+        .hero-banner h1 { font-size: 24px; text-transform: uppercase; color: #d4af37; margin: 0; }
+        .badge { display: inline-block; border: 1px solid #d4af37; padding: 10px 20px; font-size: 20px; font-weight: bold; color: #d4af37; margin-top: 15px;}
+        .content { padding: 40px 30px; line-height: 1.6; text-align: center; }
+        .info-box { background-color: #f9f6f0; border-left: 4px solid #d4af37; padding: 20px; margin: 30px 0; text-align: left; }
+        .decor-line { width: 80px; height: 1px; background: #d4af37; margin: 20px auto; }
+        
+        /* --- CSS MỚI: KHU VỰC BÌNH LUẬN --- */
+        .comments-section {
+            background-color: #ffffff;
+            border-top: 2px dashed #d4af37;
+            padding: 30px;
         }
-        .invitation-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #ffffff;
-            border: 2px solid #d4af37;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .hero-banner {
-            /* Thay link ảnh cổng trường hoặc ảnh kỷ niệm của trường Ngọc Lặc vào đây */
-            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(15, 32, 39, 0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&auto=format&fit=crop') no-repeat center center;
-            background-size: cover;
-            padding: 40px 20px;
-            text-align: center;
-            color: #ffffff;
-        }
-        .hero-banner h1 {
-            font-size: 24px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0 0 10px 0;
-            color: #d4af37;
-        }
-        .hero-banner .subtitle {
-            font-style: italic;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .badge {
-            display: inline-block;
-            border: 1px solid #d4af37;
-            padding: 10px 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #d4af37;
-            text-transform: uppercase;
-        }
-        .content {
-            padding: 40px 30px;
-            line-height: 1.6;
-            text-align: center;
-        }
-        .salutation {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .comments-section h3 {
             color: #0f2027;
+            font-size: 20px;
+            margin-top: 0;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
-        .main-text {
-            font-size: 16px;
-            text-align: justify;
+        .comment-form {
             margin-bottom: 30px;
-            text-indent: 20px;
-        }
-        .info-box {
-            background-color: #f9f6f0;
-            border-left: 4px solid #d4af37;
-            padding: 20px;
-            margin: 30px 0;
             text-align: left;
         }
-        .info-item {
-            margin-bottom: 10px;
-            font-size: 16px;
+        .comment-form input, .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-        .info-item strong {
-            color: #0f2027;
-            display: inline-block;
-            width: 100px;
-        }
-        .btn-confirm {
-            display: inline-block;
+        .comment-form textarea { height: 80px; resize: none; }
+        .btn-submit {
             background-color: #0f2027;
             color: #d4af37;
             border: 1px solid #d4af37;
-            padding: 12px 30px;
-            text-decoration: none;
+            padding: 10px 20px;
+            cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            margin-top: 10px;
         }
-        .btn-confirm:hover {
-            background-color: #d4af37;
+        .btn-submit:hover { background-color: #d4af37; color: #0f2027; }
+        
+        /* Danh sách bình luận hiển thị */
+        .comments-list {
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto; /* Tạo cuộn nếu quá nhiều bình luận */
+        }
+        .comment-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 15px 0;
+        }
+        .comment-author {
+            font-weight: bold;
             color: #0f2027;
+            font-size: 15px;
         }
-        .footer {
-            background-color: #0f2027;
-            color: #a0a0a0;
-            text-align: center;
-            padding: 20px;
+        .comment-time {
+            font-size: 12px;
+            color: #999;
+            margin-left: 10px;
+        }
+        .comment-text {
+            margin-top: 5px;
             font-size: 14px;
-            border-top: 1px solid #d4af37;
+            color: #555;
+            font-family: Arial, sans-serif;
         }
-        .decor-line {
-            width: 80px;
-            height: 1px;
-            background: #d4af37;
-            margin: 20px auto;
-        }
+        .footer { background-color: #0f2027; color: #a0a0a0; text-align: center; padding: 20px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -121,37 +88,46 @@
     <div class="invitation-card">
         <div class="hero-banner">
             <h1>Thư Mời Họp Lớp</h1>
-            <div class="subtitle">THPT Ngọc Lặc - Niên khóa 2002 - 2005</div>
+            <div style="font-style: italic; font-size: 18px;">THPT Ngọc Lặc - Niên khóa 2002 - 2005</div>
             <div class="badge">20 Năm Ngày Trở Về</div>
         </div>
 
         <div class="content">
-            <div class="salutation">Kính gửi: Quý Thầy Cô và Toàn thể Bạn học thân mến,</div>
-            
+            <p style="font-size: 18px; font-weight: bold; color: #0f2027;">Kính gửi: Quý Thầy Cô và Toàn thể Bạn học,</p>
             <div class="decor-line"></div>
-
-            <div class="main-text">
-                Thấm thoát đã 20 năm trôi qua kể từ ngày chúng ta rời xa mái trường THPT Ngọc Lặc thân yêu, khép lại những năm tháng học trò mộng mơ để bước đi trên những hành trình riêng của cuộc đời. 20 năm – một khoảng thời gian đủ dài để mỗi người trong chúng ta trưởng thành, nếm trải những thăng trầm của cuộc sống, nhưng chắc chắn chưa đủ để xóa nhòa những kỷ niệm thanh xuân rực rỡ dưới mái trường xưa.
-            </div>
+            <p style="text-align: justify; text-indent: 20px;">Thấm thoát đã 20 năm ngày ra trường... Hãy cùng trở về mái trường THPT Ngọc Lặc thân yêu để ôn lại kỷ niệm xưa và chia sẻ những câu chuyện hiện tại.</p>
             
-            <div class="main-text">
-                Để ôn lại những kỷ niệm cũ, gắn kết tình bạn bè và tỏ lòng tri ân sâu sắc đến những người đưa đò thầm lặng năm xưa, Ban liên lạc trân trọng kính mời Quý Thầy Cô cùng toàn thể các bạn về tham dự buổi lễ kỷ niệm: <strong>"20 Năm – Ngày Trở Về"</strong>.
-            </div>
-
             <div class="info-box">
-                <div class="info-item"><strong>Thời gian:</strong> 08:00 - Chủ Nhật, Ngày... Tháng... Năm 2026</div>
-                <div class="info-item"><strong>Địa điểm:</strong> Hội trường lớn, THPT Ngọc Lặc, Thanh Hóa</div>
-                <div class="info-item"><strong>Trang phục:</strong> Áo đồng niên / Trang phục lịch sự</div>
+                <div><strong>Thời gian:</strong> 08:00 - Chủ Nhật, Ngày... Tháng... Năm 2026</div>
+                <div><strong>Địa điểm:</strong> Hội trường lớn, THPT Ngọc Lặc, Thanh Hóa</div>
             </div>
+        </div>
 
-            <p style="font-style: italic; margin-bottom: 25px;">Sự hiện diện của Quý Thầy Cô và các bạn là niềm vinh hạnh lớn lao cho tập thể khóa chúng ta!</p>
+        <div class="comments-section">
+            <h3>Kỷ Niệm & Lời Nhắn Gửi</h3>
+            
+            <form class="comment-form" id="commentForm">
+                <input type="text" id="authorName" placeholder="Họ và tên của bạn (Ví dụ: Nguyễn Văn A - Lớp 12A1)" required>
+                <textarea id="commentContent" placeholder="Viết lời nhắn, lời chúc hoặc cảm xúc của bạn tại đây..." required></textarea>
+                <button type="submit" class="btn-submit">Gửi Lời Nhắn</button>
+            </form>
 
-            <a href="https://forms.gle/your-google-form-link" target="_blank" class="btn-confirm">Xác Nhận Tham Dự</a>
+            <div class="comments-list" id="commentsList">
+                <div class="comment-item">
+                    <span class="comment-author">Lê Thị B (Lớp 12A3)</span>
+                    <span class="comment-time">10 phút trước</span>
+                    <div class="comment-text">Nhanh quá, mới đó mà đã 20 năm rồi. Nhất định mình sẽ sắp xếp công việc để về gặp lại thầy cô và các bạn!</div>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-author">Trần Văn C (Lớp 12A1)</span>
+                    <span class="comment-time">1 giờ trước</span>
+                    <div class="comment-text">Hóng ngày này mãi, chúc lớp chúng mình có một buổi tụ họp thật ý nghĩa và trọn vẹn nhé.</div>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
             <p>Trân trọng,<br><strong>Ban Liên Lạc Khóa Kỷ Niệm THPT Ngọc Lặc</strong></p>
-            <p style="font-size: 12px; margin-top: 15px;">Mọi thắc mắc vui lòng liên hệ: 090X.XXX.XXX (Bạn A) / 091X.XXX.XXX (Bạn B)</p>
         </div>
     </div>
 

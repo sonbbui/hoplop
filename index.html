@@ -477,7 +477,115 @@
             document.querySelector(".countdown-container").innerHTML = "<b style='color:#800000; font-size:14pt;'>CHÀO MỪNG NGÀY HỘI KHÓA CHÍNH THỨC BẮT ĐẦU!</b>";
         }
     }, 1000);
+
+    // 4. KHU VỰC LẬP TRÌNH XỬ LÝ LIKE VÀ COMMENT (LOCAL STORAGE)
+    const likeBtn = document.getElementById('likeBtn');
+    const likeCountEl = document.getElementById('likeCount');
+    const commentsList = document.getElementById('commentsList');
+    const authorInput = document.getElementById('authorInput');
+    const commentInput = document.getElementById('commentInput');
+    const submitCommentBtn = document.getElementById('submitCommentBtn');
+
+    // Khởi tạo trạng thái ban đầu từ Trình duyệt (LocalStorage)
+    let totalLikes = parseInt(localStorage.getItem('reunion_likes')) || 42; // Để mặc định sẵn 42 lượt like cho đẹp trang
+    let hasLiked = localStorage.getItem('reunion_has_liked') === 'true';
+    let savedComments = JSON.parse(localStorage.getItem('reunion_comments')) || [];
+
+    // Hiển thị dữ liệu cũ đã lưu
+    likeCountEl.innerText = totalLikes;
+    if (hasLiked) {
+        likeBtn.classList.add('liked');
+        document.getElementById('likeIcon').innerText = '❤ Đã ';
+    }
+    renderComments();
+
+    // Xử lý sự kiện bấm Like
+    likeBtn.addEventListener('click', function() {
+        if (!hasLiked) {
+            totalLikes++;
+            hasLiked = true;
+            likeBtn.classList.add('liked');
+            document.getElementById('likeIcon').innerText = '❤ Đã ';
+        } else {
+            totalLikes--;
+            hasLiked = false;
+            likeBtn.classList.remove('liked');
+            document.getElementById('likeIcon').innerText = '❤';
+        }
+        // Lưu lại trình duyệt
+        likeCountEl.innerText = totalLikes;
+        localStorage.setItem('reunion_likes', totalLikes);
+        localStorage.setItem('reunion_has_liked', hasLiked);
+    });
+
+    // Xử lý gửi bình luận lời chúc
+    submitCommentBtn.addEventListener('click', function() {
+        const author = authorInput.value.trim();
+        const text = commentInput.value.trim();
+
+        if (author === '' || text === '') {
+            alert('Vui lòng điền đầy đủ Tên và Lời nhắn của bạn!');
+            return;
+        }
+
+        // Tạo mốc thời gian hiện tại
+        const now = new Date();
+        const timeString = `${now.getDate()}/${now.getMonth() + 1} ${now.getHours()}:${now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()}`;
+
+        const newComment = {
+            author: author,
+            text: text,
+            time: timeString
+        };
+
+        // Đẩy vào mảng lưu trữ
+        savedComments.unshift(newComment); // Thêm bình luận mới lên đầu danh sách
+        localStorage.setItem('reunion_comments', JSON.stringify(savedComments));
+
+        // Vẽ lại danh sách và xóa sạch ô nhập dữ liệu
+        renderComments();
+        commentInput.value = '';
+    });
+
+    // Hàm xuất toàn bộ bình luận ra màn hình
+    function renderComments() {
+        // Giữ lại bình luận mẫu của BTC
+        let html = `
+            <div class="comment-item">
+                <div class="comment-header">
+                    <span class="comment-author">Ban Tổ Chức Hội Khóa</span>
+                    <span class="comment-time">Hệ thống</span>
+                </div>
+                <div class="comment-text">Chào mừng Quý Thầy Cô và các bạn cựu học sinh! Hãy để lại lời nhắn hoặc cảm xúc của mình tại đây nhé.</div>
+            </div>
+        `;
+        
+        // Cộng dồn các bình luận người dùng viết
+        savedComments.forEach(function(item) {
+            html += `
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(item.author)}</span>
+                        <span class="comment-time">${item.time}</span>
+                    </div>
+                    <div class="comment-text">${escapeHtml(item.text)}</div>
+                </div>
+            `;
+        });
+        commentsList.innerHTML = html;
+    }
+
+    // Hàm chống mã độc XSS (bảo vệ an toàn khi hiển thị văn bản tự do)
+    function escapeHtml(text) {
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 </script>
+
 
 </body>
 </html>

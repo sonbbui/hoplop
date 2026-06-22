@@ -257,3 +257,85 @@
 
     <div class="header">
         <h1 class="main-title">20 Năm – Một Chặng Đường</h1>
+        <p class="subtitle">“Hội ngộ để nhớ, Tri ân để trưởng thành”</p>
+        <div class="divider"></div>
+        <div class="meta-info"><strong>Niên khóa:</strong> 2003 - 2006 | THPT Ngọc Lặc</div>
+        <div class="meta-info"><strong>Thời gian:</strong> Thứ Bảy, ngày 11/07/2026</div>
+        <div class="meta-info"><strong>Địa điểm:</strong> Trường THPT Ngọc Lặc, Tỉnh Thanh Hóa</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-title">Thư Mời</div>
+    <div class="letter-content">
+        <div class="salutation">Kính gửi: Quý Thầy Cô và Các bạn cựu học sinh 2003 - 2006</div>
+        <p>Mới ngày nào còn ngồi dưới mái trường thân yêu, nay đã tròn 20 năm chia xa. Đây là dịp vô cùng đặc biệt để tất cả chúng ta cùng nhau hội ngộ, ôn lại những kỷ niệm đẹp đẽ của tuổi học trò và bày tỏ lòng tri ân sâu sắc tới những người Thầy, người Cô đã nâng cánh ước mơ cho chúng ta trưởng thành.</p>
+        <p>Sự hiện diện của Quý Thầy Cô và các bạn chính là niềm vinh hạnh lớn lao, góp phần làm cho ngày hội khóa thêm trọn vẹn và đong đầy ý nghĩa.</p>
+    </div>
+
+    <div class="section-title">Chương Trình Chi Tiết</div>
+    <table class="program-table">
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Nội dung chương trình</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="time">07:00 - 08:30</td>
+                <td class="details">Đón tiếp & Tập trung tại sân trường</td>
+            </tr>
+            <tr>
+                <td class="time">08:30 - 09:00</td>
+                <td class="details">Chụp ảnh lưu niệm toàn khóa</td>
+            </tr>
+            <tr>
+                <td class="time">09:00 - 11:00</td>
+                <td class="details"><strong>Lễ Kỷ Niệm Chính Thức:</strong> Tri ân Thầy Cô, tặng quà lưu niệm</td>
+            </tr>
+            <tr>
+                <td class="time">11:30</td>
+                <td class="details">Tiệc giao lưu & Chia sẻ kỷ niệm</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer-note">
+        <strong>Lưu ý từ BTC:</strong> Ban cán sự các lớp vui lòng xác nhận số lượng thành viên tham dự trước ngày <strong>01/07/2026</strong> để Ban Tổ Chức có thể chuẩn bị đón tiếp một cách chu đáo và trọn vẹn nhất.
+    </div>
+
+    <div class="closing-text">Rất mong gặp lại tất cả các bạn!</div>
+
+    <div class="signature-block">
+        <div class="signature-title">Ban Tổ Chức Hội Khóa</div>
+    </div>
+</div>
+
+<div class="audio-player-container">
+    <span style="color: white; font-size: 10pt; font-weight: bold; margin-right: 10px; font-family: sans-serif;">♫ Phượng Hồng (Piano)</span>
+    <audio id="bg-music" controls loop>
+        <source src="cndb.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ phát âm thanh.
+    </audio>
+</div>
+
+<script>
+    // Tự động phát nhạc khi người dùng tương tác (click/chạm) đầu tiên trên trang web
+    window.addEventListener('click', function() {
+        var audio = document.getElementById('bg-music');
+        if (audio.paused) {
+            audio.play();
+        }
+    }, { once: true }); // "once: true" đảm bảo chỉ kích hoạt một lần duy nhất khi click đầu tiên
+
+    window.addEventListener('touchstart', function() {
+        var audio = document.getElementById('bg-music');
+        if (audio.paused) {
+            audio.play();
+        }
+    }, { once: true });
+</script>
+
+</body>
+</html>

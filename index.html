@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp Mời Kỷ Niệm 20 Năm Ngày Ra Trường</title>
+    <title>Thiệp Mới Kỷ Niệm 20 Năm Ngày Ra Trường</title>
     <style>
-        /* Khởi tạo cơ bản */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -14,32 +13,44 @@
             padding: 20px;
             font-family: 'Times New Roman', Times, serif;
             color: #3a2e2b;
-            background-color: #e6dfd3;
+            background-color: #fcefe3;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
-        /* Khung chứa thiệp mời */
+        /* Khung chứa thiệp mời tích hợp Background SVG nghệ thuật */
         .card-container {
             width: 100%;
-            max-width: 800px;
-            background-color: #f7f3eb;
-            padding: 60px 50px;
+            max-width: 850px;
+            background-color: #fffaf2;
+            padding: 50px 45px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(128, 0, 0, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            
+            /* Background vẽ bằng SVG: Kết hợp hoa phượng đỏ góc dưới/trên và cánh diều bay lượn */
+            background-image: 
+                /* Góc trên bên phải: Cánh diều */
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 100 100'><path d='M50,10 L75,35 L50,60 L25,35 Z' fill='%23d9534f' opacity='0.15'/><path d='M50,10 L50,60 M25,35 L75,35' stroke='%238a6d3b' stroke-width='0.5' opacity='0.2'/><path d='M50,60 Q55,75 48,90 Q43,95 50,100' fill='none' stroke='%23d9534f' stroke-width='1' opacity='0.2'/></svg>"),
+                /* Góc dưới bên phải: Chùm hoa phượng */
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 100 100'><g fill='%23d9534f' opacity='0.12'><circle cx='90' cy='90' r='12'/><circle cx='80' cy='85' r='10'/><circle cx='85' cy='75' r='9'/><circle cx='72' cy='92' r='11'/><circle cx='62' cy='85' r='7'/></g><g fill='%235cb85c' opacity='0.08'><path d='M50,95 Q70,75 90,90 M40,85 Q60,65 80,80'/></g></svg>"),
+                /* Góc trên bên trái: Nhành phượng rủ */
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'><g fill='%23d9534f' opacity='0.12'><circle cx='10' cy='15' r='10'/><circle cx='22' cy='10' r='8'/><circle cx='15' cy='25' r='9'/><circle cx='30' cy='18' r='7'/></g><g fill='%235cb85c' opacity='0.08'><path d='M0,0 Q20,15 40,10 M0,10 Q15,25 30,20'/></g></svg>");
+            background-position: top right, bottom right, top left;
+            background-repeat: no-repeat;
         }
 
-        /* Đường viền họa tiết sang trọng */
+        /* Đường viền hoài cổ */
         .outer-border {
             position: absolute;
             top: 20px;
             bottom: 20px;
             left: 20px;
             right: 20px;
-            border: 2px solid #8a6d3b;
+            border: 2px solid #b3925c;
             pointer-events: none;
         }
         .inner-border {
@@ -48,16 +59,17 @@
             bottom: 25px;
             left: 25px;
             right: 25px;
-            border: 1px solid #8a6d3b;
+            border: 1px solid #b3925c;
             pointer-events: none;
+            opacity: 0.6;
         }
 
-        /* Góc họa tiết cổ điển */
+        /* Góc họa tiết */
         .corner {
             position: absolute;
             width: 25px;
             height: 25px;
-            border: 3px solid #8a6d3b;
+            border: 3px solid #b3925c;
             pointer-events: none;
         }
         .top-left { top: 26px; left: 26px; border-right: none; border-bottom: none; }
@@ -65,95 +77,97 @@
         .bottom-left { bottom: 26px; left: 26px; border-right: none; border-top: none; }
         .bottom-right { bottom: 26px; right: 26px; border-left: none; border-top: none; }
 
-        /* Tiêu đề chính */
+        /* Tiêu đề thiệp */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
         }
         .main-title {
-            font-size: 28pt;
+            font-size: 26pt;
             font-weight: bold;
-            color: #800000; /* Màu đỏ đô */
+            color: #800000;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             margin: 0 0 10px 0;
         }
         .subtitle {
-            font-size: 15pt;
+            font-size: 14pt;
             font-style: italic;
-            color: #5c4a42;
+            color: #614e43;
             margin: 0 0 20px 0;
         }
-        
-        /* Thông tin thời gian địa điểm tổng quan */
         .meta-info {
             font-size: 13pt;
             font-weight: bold;
             color: #3a2e2b;
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 5px;
         }
         
-        /* Thanh phân cách nghệ thuật */
         .divider {
-            width: 60%;
+            width: 50%;
             height: 1px;
-            background: linear-gradient(to right, transparent, #8a6d3b, transparent);
-            margin: 25px auto;
+            background: linear-gradient(to right, transparent, #b3925c, transparent);
+            margin: 20px auto;
         }
 
-        /* Tiêu đề các mục lớn */
         .section-title {
-            font-size: 18pt;
+            font-size: 17pt;
             font-weight: bold;
             color: #800000;
             text-align: center;
             text-transform: uppercase;
-            margin-top: 35px;
-            margin-bottom: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
-        /* Bức thư mời */
+        /* Nội dung thư */
         .letter-content {
-            font-size: 13pt;
+            font-size: 12.5pt;
             line-height: 1.8;
             text-align: justify;
-            margin-bottom: 30px;
-            padding: 0 15px;
+            margin-bottom: 25px;
+            padding: 0 10px;
+            position: relative;
+            z-index: 2;
         }
         .letter-content p {
-            margin: 0 0 15px 0;
+            margin: 0 0 12px 0;
             text-indent: 30px;
         }
         .letter-content .salutation {
-            font-size: 14pt;
+            font-size: 13.5pt;
             font-weight: bold;
             text-indent: 0;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
-            color: #3a2e2b;
+            color: #2b2220;
         }
 
-        /* Bảng hiển thị lịch trình */
+        /* Bảng lịch trình */
         .program-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0 35px 0;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin: 15px 0 30px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            position: relative;
+            z-index: 2;
         }
         .program-table th, .program-table td {
-            border: 1px solid #d3c7b5;
-            padding: 12px 18px;
-            font-size: 12pt;
+            border: 1px solid #dcd1be;
+            padding: 12px 15px;
+            font-size: 11.5pt;
         }
         .program-table th {
             background-color: #800000;
             color: #ffffff;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 11.5pt;
+            font-size: 11pt;
             letter-spacing: 0.5px;
         }
         .program-table td.time {
@@ -161,65 +175,59 @@
             color: #800000;
             text-align: center;
             width: 25%;
-            background-color: #fdfcf9;
-        }
-        .program-table td.details {
-            text-align: left;
+            background-color: #fffdfa;
         }
 
-        /* Ghi chú chân trang */
+        /* Khối ghi chú chân trang */
         .footer-note {
-            font-size: 11.5pt;
+            font-size: 11pt;
             font-style: italic;
-            color: #66554e;
-            background-color: #f0eae1;
-            padding: 15px 20px;
-            border-left: 4px solid #8a6d3b;
-            margin-bottom: 30px;
+            color: #594a42;
+            background-color: rgba(240, 234, 225, 0.85);
+            padding: 12px 18px;
+            border-left: 4px solid #b3925c;
+            margin-bottom: 25px;
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
         
-        /* Lời kết */
         .closing-text {
-            font-size: 14pt;
+            font-size: 13.5pt;
             font-weight: bold;
             font-style: italic;
             color: #800000;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
         }
         
-        /* Khối ký tên Ban tổ chức */
         .signature-block {
             text-align: right;
-            padding-right: 20px;
-            margin-top: 20px;
+            padding-right: 15px;
+            position: relative;
+            z-index: 2;
         }
         .signature-title {
-            font-size: 13pt;
+            font-size: 12pt;
             font-weight: bold;
             text-transform: uppercase;
             color: #800000;
-            letter-spacing: 0.5px;
         }
 
-        /* Tối ưu hiển thị cho thiết bị di động nhỏ */
+        /* Responsive di động */
         @media (max-width: 600px) {
             body { padding: 5px; }
-            .card-container { padding: 40px 20px; }
+            .card-container { padding: 35px 20px; background-size: 100px, 150px, 120px; }
             .outer-border { top: 10px; bottom: 10px; left: 10px; right: 10px; }
             .inner-border { top: 14px; bottom: 14px; left: 14px; right: 14px; }
-            .corner { width: 15px; height: 15px; }
-            .top-left { top: 15px; left: 15px; }
-            .top-right { top: 15px; right: 15px; }
-            .bottom-left { bottom: 15px; left: 15px; }
-            .bottom-right { bottom: 15px; right: 15px; }
             .main-title { font-size: 18pt; }
             .subtitle { font-size: 11pt; }
-            .section-title { font-size: 14pt; }
+            .meta-info { font-size: 11pt; }
+            .section-title { font-size: 13pt; }
             .letter-content { font-size: 11pt; }
-            .program-table th, .program-table td { padding: 8px; font-size: 10.5pt; }
-            .signature-title { font-size: 11pt; }
+            .program-table th, .program-table td { padding: 8px; font-size: 10pt; }
         }
     </style>
 </head>
@@ -233,6 +241,7 @@
     <div class="corner bottom-left"></div>
     <div class="corner bottom-right"></div>
 
+    <!-- Đầu thiệp -->
     <div class="header">
         <h1 class="main-title">20 Năm – Một Chặng Đường</h1>
         <p class="subtitle">“Hội ngộ để nhớ, Tri ân để trưởng thành”</p>
@@ -244,6 +253,7 @@
 
     <div class="divider"></div>
 
+    <!-- Thư mời -->
     <div class="section-title">Thư Mời</div>
     <div class="letter-content">
         <div class="salutation">Kính gửi: Quý Thầy Cô và Các bạn cựu học sinh 2003 - 2006</div>
@@ -251,6 +261,7 @@
         <p>Sự hiện diện của Quý Thầy Cô và các bạn chính là niềm vinh hạnh lớn lao, góp phần làm cho ngày hội khóa thêm trọn vẹn và đong đầy ý nghĩa.</p>
     </div>
 
+    <!-- Chương trình -->
     <div class="section-title">Chương Trình Chi Tiết</div>
     <table class="program-table">
         <thead>
@@ -279,12 +290,15 @@
         </tbody>
     </table>
 
+    <!-- Lưu ý -->
     <div class="footer-note">
         <strong>Lưu ý từ BTC:</strong> Ban cán sự các lớp vui lòng xác nhận số lượng thành viên tham dự trước ngày <strong>01/07/2026</strong> để Ban Tổ Chức có thể chuẩn bị đón tiếp một cách chu đáo và trọn vẹn nhất.
     </div>
 
+    <!-- Lời kết được đẩy lên -->
     <div class="closing-text">Rất mong gặp lại tất cả các bạn!</div>
 
+    <!-- Chữ ký -->
     <div class="signature-block">
         <div class="signature-title">Ban Tổ Chức Hội Khóa</div>
     </div>

@@ -335,7 +335,58 @@
             audio.play();
         }
     }, { once: true });
+
+// JS tạo hiệu ứng hoa phượng rơi ngẫu nhiên sinh động
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        
+        const size = Math.random() * 8 + 6; 
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.4}px`;
+        petal.style.left = Math.random() * window.innerWidth + 'px';
+        
+        const duration = Math.random() * 5 + 4;
+        petal.style.animationDuration = `${duration}s`;
+        
+        const colors = ['#ff3a3a', '#ff4d4d', '#e62e2e', '#ff5722'];
+        petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        
+        document.body.appendChild(petal);
+        
+        setTimeout(() => {
+            petal.remove();
+        }, duration * 1000);
+    }
+    setInterval(createPetal, 300);
+
+    // JS Thiết lập thời gian bộ đếm ngược đến 11/07/2026
+    const targetDate = new Date("July 11, 2026 07:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // Tính toán các mốc Ngày, Giờ, Phút, Giây
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Hiển thị kết quả vào các thẻ tương ứng
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+        // Nếu thời gian đếm ngược kết thúc
+        if (distance < 0) {
+            clearInterval(countdownFunction);
+            document.querySelector(".countdown-container").innerHTML = "<b style='color:#800000; font-size:14pt;'>CHÀO MỪNG NGÀY HỘI KHÓA CHÍNH THỨC BẮT ĐẦU!</b>";
+        }
+    }, 1000);
 </script>
+
 
 </body>
 </html>

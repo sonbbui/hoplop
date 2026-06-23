@@ -471,7 +471,32 @@
         }, duration * 1000);
     }
     setInterval(createPetal, 300);
+    // JS hiệu ứng tạo nhiều trái tim nhỏ bay khi di chuyển chuột qua
+    let lastMove = 0;
+    window.addEventListener('mousemove', function(e) {
+        const now = Date.now();
+        if (now - lastMove < 50) return; // Giới hạn tần suất tạo trái tim để mượt mà, không lag
+        lastMove = now;
 
+        const heart = document.createElement('div');
+        heart.classList.add('mouse-heart');
+        
+        // Ngẫu nhiên các kiểu biểu tượng trái tim dễ thương
+        const heartIcons = ['❤️', '💖', '💖', '💕', '✨', '🌸'];
+        heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+        
+        // Tọa độ xuất phát chính xác tại đầu con trỏ chuột
+        heart.style.left = (e.clientX - 6) + 'px';
+        heart.style.top = (e.clientY - 6) + 'px';
+        
+        // Tạo hướng bay ngẫu nhiên lên phía trên lệch trái/phải
+        const moveX = (Math.random() - 0.5) * 60; // bay lệch ngang tầm -30px đến 30px
+        const moveY = -(Math.random() * 40 + 40); // bay vút lên trên tầm -40px đến -80px
+        
+        heart.style.setProperty('--mx', `${moveX}px`);
+        heart.style.setProperty('--my', `${moveY}px`);
+        
+        document.body.appendChild(heart);
     // JS Thiết lập thời gian bộ đếm ngược đến 11/07/2026
     const targetDate = new Date("July 11, 2026 07:00:00").getTime();
 

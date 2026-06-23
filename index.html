@@ -497,6 +497,11 @@
         heart.style.setProperty('--my', `${moveY}px`);
         
         document.body.appendChild(heart);
+        // Tự động xóa sau khi hoạt ảnh biến mất kết thúc
+        setTimeout(() => {
+            heart.remove();
+        }, 1000);
+    });
     // JS Thiết lập thời gian bộ đếm ngược đến 11/07/2026
     const targetDate = new Date("July 11, 2026 07:00:00").getTime();
 

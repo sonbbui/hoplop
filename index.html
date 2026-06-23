@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thiệp Mời Kỷ Niệm 20 Năm Ngày Ra Trường</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -11,7 +15,9 @@
         body {
             margin: 0;
             padding: 20px;
-            font-family: 'Times New Roman', Times, serif;
+            /* Đổi font chữ mặc định thành font viết tay Patrick Hand */
+            font-family: 'Patrick Hand', cursive;
+            font-size: 14pt;
             color: #3a2e2b;
             background-color: #fcefe3;
             display: flex;
@@ -20,7 +26,6 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-        /* Cấu hình con trỏ chuột trái tim mặc định */
             cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style='font-size:18px'><text y='18'>❤️</text></svg>"), auto;
         }
 
@@ -28,7 +33,7 @@
         .card-container {
             width: 100%;
             max-width: 850px;
-            background-color: #ffffff; /* Đổi thành nền trắng */
+            background-color: #ffffff;
             padding: 50px 45px;
             position: relative;
             box-shadow: 0 10px 30px rgba(128, 0, 0, 0.15);
@@ -36,7 +41,6 @@
             overflow: hidden;
             z-index: 2;
             
-            /* Tạo đường kẻ ngang màu xanh tập học sinh kết hợp với hoa văn cũ */
             background-image: 
                 linear-gradient(#e4edf2 1px, transparent 1px),
                 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 100 100'><path d='M50,10 L75,35 L50,60 L25,35 Z' fill='%23d9534f' opacity='0.15'/><path d='M50,10 L50,60 M25,35 L75,35' stroke='%238a6d3b' stroke-width='0.5' opacity='0.2'/><path d='M50,60 Q55,75 48,90 Q43,95 50,100' fill='none' stroke='%23d9534f' stroke-width='1' opacity='0.2'/></svg>"),
@@ -44,7 +48,7 @@
                 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'><g fill='%23d9534f' opacity='0.12'><circle cx='10' cy='15' r='10'/><circle cx='22' cy='10' r='8'/><circle cx='15' cy='25' r='9'/><circle cx='30' cy='18' r='7'/></g><g fill='%235cb85c' opacity='0.08'><path d='M0,0 Q20,15 40,10 M0,10 Q15,25 30,20'/></g></svg>");
             background-position: left top, top right, bottom right, top left;
             background-repeat: repeat, no-repeat, no-repeat, no-repeat;
-            background-size: 100% 32px, auto, auto, auto; /* 32px tạo khoảng cách dòng kẻ vừa vặn */
+            background-size: 100% 32px, auto, auto, auto;
         }
 
         /* Đường viền hoài cổ */
@@ -81,7 +85,7 @@
         .bottom-left { bottom: 26px; left: 26px; border-right: none; border-top: none; }
         .bottom-right { bottom: 26px; right: 26px; border-left: none; border-top: none; }
 
-        /* Tiêu đề thiệp */
+        /* Tiêu đề thiệp sử dụng nét chữ mềm mại Dancing Script */
         .header {
             text-align: center;
             margin-bottom: 25px;
@@ -89,24 +93,23 @@
             z-index: 2;
         }
         .main-title {
-            font-size: 26pt;
+            font-family: 'Dancing Script', cursive;
+            font-size: 36pt;
             font-weight: bold;
             color: #800000;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin: 0 0 10px 0;
+            margin: 0 0 5px 0;
         }
         .subtitle {
-            font-size: 14pt;
-            font-style: italic;
+            font-family: 'Dancing Script', cursive;
+            font-size: 20pt;
+            font-weight: bold;
             color: #614e43;
             margin: 0 0 20px 0;
         }
         .meta-info {
-            font-size: 13pt;
-            font-weight: bold;
+            font-size: 15pt;
             color: #3a2e2b;
-            line-height: 1.7;
+            line-height: 1.6;
             margin-bottom: 5px;
         }
         
@@ -130,43 +133,39 @@
             background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid rgba(179, 146, 92, 0.4);
             border-radius: 6px;
-            padding: 10px;
+            padding: 8px;
             min-width: 75px;
             text-align: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
         .countdown-number {
-            font-size: 20pt;
+            font-size: 22pt;
             font-weight: bold;
             color: #800000;
-            font-family: 'Arial', sans-serif;
             display: block;
             line-height: 1.2;
         }
         .countdown-label {
-            font-size: 9.5pt;
-            text-transform: uppercase;
+            font-size: 11pt;
             color: #614e43;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
+            margin-top: 2px;
             display: block;
         }
 
         .section-title {
-            font-size: 17pt;
+            font-family: 'Dancing Script', cursive;
+            font-size: 26pt;
             font-weight: bold;
             color: #800000;
             text-align: center;
-            text-transform: uppercase;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
 
         /* Nội dung thư */
         .letter-content {
-            font-size: 12.5pt;
-            line-height: 1.8;
+            font-size: 15pt;
+            line-height: 1.6;
             text-align: justify;
             margin-bottom: 25px;
             padding: 0 10px;
@@ -178,7 +177,7 @@
             text-indent: 30px;
         }
         .letter-content .salutation {
-            font-size: 13.5pt;
+            font-size: 16pt;
             font-weight: bold;
             text-indent: 0;
             margin-bottom: 15px;
@@ -198,15 +197,15 @@
         }
         .program-table th, .program-table td {
             border: 1px solid #dcd1be;
-            padding: 12px 15px;
-            font-size: 11.5pt;
+            padding: 10px 15px;
+            font-size: 14pt;
         }
         .program-table th {
+            font-family: 'Patrick Hand', cursive;
             background-color: #800000;
             color: #ffffff;
             font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11pt;
+            font-size: 15pt;
             letter-spacing: 0.5px;
         }
         .program-table td.time {
@@ -219,22 +218,21 @@
 
         /* Khối ghi chú chân trang */
         .footer-note {
-            font-size: 11pt;
-            font-style: italic;
+            font-size: 13pt;
             color: #594a42;
             background-color: rgba(245, 242, 237, 0.95);
             padding: 12px 18px;
             border-left: 4px solid #b3925c;
             margin-bottom: 25px;
-            line-height: 1.6;
+            line-height: 1.5;
             position: relative;
             z-index: 2;
         }
         
         .closing-text {
-            font-size: 13.5pt;
+            font-family: 'Dancing Script', cursive;
+            font-size: 22pt;
             font-weight: bold;
-            font-style: italic;
             color: #800000;
             text-align: center;
             margin-bottom: 25px;
@@ -249,9 +247,9 @@
             z-index: 2;
         }
         .signature-title {
-            font-size: 12pt;
+            font-family: 'Dancing Script', cursive;
+            font-size: 18pt;
             font-weight: bold;
-            text-transform: uppercase;
             color: #800000;
         }
 
@@ -320,20 +318,20 @@
             }
         }
         @media (max-width: 600px) {
-            body { padding: 5px; }
+            body { padding: 5px; font-size: 12pt; }
             .card-container { padding: 35px 20px; background-size: 100% 28px, 100px, 150px, 120px; }
             .outer-border { top: 10px; bottom: 10px; left: 10px; right: 10px; }
             .inner-border { top: 14px; bottom: 14px; left: 14px; right: 14px; }
-            .main-title { font-size: 18pt; }
-            .subtitle { font-size: 11pt; }
-            .meta-info { font-size: 11pt; }
-            .section-title { font-size: 13pt; }
-            .letter-content { font-size: 11pt; }
-            .program-table th, .program-table td { padding: 8px; font-size: 10pt; }
+            .main-title { font-size: 26pt; }
+            .subtitle { font-size: 15pt; }
+            .meta-info { font-size: 12pt; }
+            .section-title { font-size: 20pt; }
+            .letter-content { font-size: 12pt; }
+            .program-table th, .program-table td { padding: 8px; font-size: 11pt; }
             .audio-player-container { bottom: 10px; left: 10px; padding: 5px 10px; }
             .countdown-box { min-width: 55px; padding: 6px; }
-            .countdown-number { font-size: 14pt; }
-            .countdown-label { font-size: 8pt; }
+            .countdown-number { font-size: 16pt; }
+            .countdown-label { font-size: 9pt; }
         }
     </style>
 </head>
@@ -424,7 +422,7 @@
 </div>
 
 <div class="audio-player-container">
-    <span style="color: white; font-size: 10pt; font-weight: bold; margin-right: 10px; font-family: sans-serif;">♫ Mình cùng nhau đóng băng (Thùy Chi)</span>
+    <span style="color: white; font-size: 11pt; font-weight: bold; margin-right: 10px; font-family: 'Patrick Hand', cursive;">♫ Mình cùng nhau đóng băng (Thùy Chi)</span>
     <audio id="bg-music" controls loop>
         <source src="cndb.mp3" type="audio/mpeg">
         Trình duyệt của bạn không hỗ trợ phát âm thanh.
@@ -466,37 +464,35 @@
         }, duration * 1000);
     }
     setInterval(createPetal, 300);
+    
     // JS hiệu ứng tạo nhiều trái tim nhỏ bay khi di chuyển chuột qua
     let lastMove = 0;
     window.addEventListener('mousemove', function(e) {
         const now = Date.now();
-        if (now - lastMove < 50) return; // Giới hạn tần suất tạo trái tim để mượt mà, không lag
+        if (now - lastMove < 50) return; 
         lastMove = now;
 
         const heart = document.createElement('div');
         heart.classList.add('mouse-heart');
         
-        // Ngẫu nhiên các kiểu biểu tượng trái tim dễ thương
         const heartIcons = ['❤️', '💖', '💖', '💕', '✨', '🌸'];
         heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
         
-        // Tọa độ xuất phát chính xác tại đầu con trỏ chuột
         heart.style.left = (e.clientX - 6) + 'px';
         heart.style.top = (e.clientY - 6) + 'px';
         
-        // Tạo hướng bay ngẫu nhiên lên phía trên lệch trái/phải
-        const moveX = (Math.random() - 0.5) * 60; // bay lệch ngang tầm -30px đến 30px
-        const moveY = -(Math.random() * 40 + 40); // bay vút lên trên tầm -40px đến -80px
+        const moveX = (Math.random() - 0.5) * 60; 
+        const moveY = -(Math.random() * 40 + 40); 
         
         heart.style.setProperty('--mx', `${moveX}px`);
         heart.style.setProperty('--my', `${moveY}px`);
         
         document.body.appendChild(heart);
-        // Tự động xóa sau khi hoạt ảnh biến mất kết thúc
         setTimeout(() => {
             heart.remove();
         }, 1000);
     });
+    
     // JS Thiết lập thời gian bộ đếm ngược đến 11/07/2026
     const targetDate = new Date("July 11, 2026 07:00:00").getTime();
 
@@ -504,25 +500,23 @@
         const now = new Date().getTime();
         const distance = targetDate - now;
 
-        // Tính toán các mốc Ngày, Giờ, Phút, Giây
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Hiển thị kết quả vào các thẻ tương ứng
         document.getElementById("days").innerText = days < 10 ? "0" + days : days;
         document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
         document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
         document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-        // Nếu thời gian đếm ngược kết thúc
         if (distance < 0) {
             clearInterval(countdownFunction);
-            document.querySelector(".countdown-container").innerHTML = "<b style='color:#800000; font-size:14pt;'>CHÀO MỪNG NGÀY HỘI KHÓA CHÍNH THỨC BẮT ĐẦU!</b>";
+            document.querySelector(".countdown-container").innerHTML = "<b style='color:#800000; font-size:16pt; font-family: \"Patrick Hand\", cursive;'>CHÀO MỪNG NGÀY HỘI KHÓA CHÍNH THỨC BẮT ĐẦU!</b>";
         }
     }, 1000);
-    // CHÈN THÊM VÀO ĐÂY: Chống click chuột phải
+    
+    // Chống click chuột phải
     window.addEventListener('contextmenu', function (e) {
         e.preventDefault();
     }, false);

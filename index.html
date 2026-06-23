@@ -527,6 +527,10 @@
             document.querySelector(".countdown-container").innerHTML = "<b style='color:#800000; font-size:14pt;'>CHÀO MỪNG NGÀY HỘI KHÓA CHÍNH THỨC BẮT ĐẦU!</b>";
         }
     }, 1000);
+    // CHÈN THÊM VÀO ĐÂY: Chống click chuột phải
+    window.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    }, false);
 </script>
 
 </body>

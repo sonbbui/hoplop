@@ -184,7 +184,67 @@
             text-align: center;
             color: #2b2220;
         }
+		/* CSS KHU VỰC TƯƠNG TÁC ĐIỂM DANH (Ý TƯỞNG 3) */
+        .interaction-panel {
+            background: #fffdf9;
+            border: 2px dashed #b3925c;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(179, 146, 92, 0.1);
+        }
+        .attendance-count { font-size: 15pt; color: #614e43; margin-bottom: 15px; }
+        .attendance-count span { color: #800000; font-weight: bold; font-size: 18pt; }
+        .input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+        .input-name {
+            font-family: 'Patrick Hand', cursive;
+            padding: 10px 15px;
+            font-size: 14pt;
+            border: 1px solid #dcd1be;
+            border-radius: 25px;
+            outline: none;
+            text-align: center;
+            background: #ffffff;
+        }
+        .btn-checkin {
+            font-family: 'Patrick Hand', cursive;
+            background: #800000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 25px;
+            font-size: 15pt;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(128, 0, 0, 0.2);
+        }
+        .btn-checkin:hover { transform: scale(1.05); background: #a00000; }
+        
+        /* Giao diện tấm vé ảo xuất hiện sau khi bấm */
+        .ticket-box {
+            display: none;
+            background: linear-gradient(135deg, #800000, #4a0000);
+            color: #fffdfa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            position: relative;
+            border: 2px dashed #b3925c;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn { 0% { transform: scale(0.7); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .ticket-title { font-family: 'Dancing Script', cursive; font-size: 24pt; color: #fcefe3; margin-bottom: 5px; }
+        .ticket-name { font-size: 20pt; font-weight: bold; margin: 10px 0; color: #b3925c; letter-spacing: 1px; }
+        .ticket-footer { font-size: 11pt; opacity: 0.7; border-top: 1px rgba(255,255,255,0.2) dashed; padding-top: 8px; margin-top: 10px; }
 
+        /* Pháo giấy khi bấm thành công */
+        .confetti { position: fixed; width: 8px; height: 8px; background-color: #ff3a3a; z-index: 1000; pointer-events: none; border-radius: 50%; animation: confettiFall 2s ease-out forwards; }
+        @keyframes confettiFall { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) translateX(100px) rotate(360deg); opacity: 0; } }
         /* Bảng lịch trình */
         .program-table {
             width: 100%;
@@ -385,7 +445,24 @@
        
 	<p></p>
     </div>
+	<div class="interaction-panel">
+        <div class="attendance-count">Khóa chúng ta đã có <span id="count-number">148</span> bạn báo SẼ VỀ!</div>
+        
+        <div id="checkin-form">
+            <div class="input-group">
+                <input type="text" id="visitor-name" class="input-name" placeholder="Nhập Họ Tên và Lớp cũ của bạn..." required>
+            </div>
+            <button class="btn-checkin" onclick="performCheckin()">🎯 Điểm Danh Trở Về</button>
+        </div>
 
+        <div id="virtual-ticket" class="ticket-box">
+            <div class="ticket-title">Vé Thông Hành Thanh Xuân</div>
+            <div style="font-size:12pt; color:#dcd1be;">Nơi đến: THPT Ngọc Lặc - Ngày 11/07/2026</div>
+            <div class="ticket-name" id="ticket-user-name">NGUYỄN VĂN A - 12A1</div>
+            <div style="font-size:13pt; font-style:italic;">"Vé hợp lệ cho một suất ôm chặt bạn cũ ngày gặp lại!"</div>
+            <div class="ticket-footer">Chụp ảnh màn hình để lưu giữ chiếc vé kỷ niệm này nhé bạn ❤️</div>
+        </div>
+    </div>
     <div class="section-title">Chương Trình Chi Tiết</div>
     <table class="program-table">
         <thead>
@@ -435,6 +512,66 @@
 </div>
 
 <script>
+	// 1. Định nghĩa số đếm nền ban đầu
+const BASE_COUNT = 1; 
+const countElement = document.getElementById("count-number");
+
+// 2. Hàm đọc file bộ nhớ trình duyệt và cập nhật số lượng khi vừa mở trang
+function updateDisplayCount() {
+    let addedCount = localStorage.getItem("added_attendance_count");
+    if (addedCount === null) {
+        addedCount = 0;
+        localStorage.setItem("added_attendance_count", 0); // Khởi tạo tệp lưu trữ ban đầu nếu chưa có
+    }
+    // Thực hiện cộng dồn: Số gốc (148) + Số lượng tích lũy mới
+    countElement.innerText = BASE_COUNT + parseInt(addedCount);
+}
+
+// Gọi hàm chạy ngay khi tải trang
+updateDisplayCount();
+
+// 3. Hàm xử lý ghi đè và cộng dồn khi người dùng nhấn nút "Điểm Danh"
+function performCheckin() {
+    const nameInput = document.getElementById("visitor-name").value.trim();
+    if (nameInput === "") {
+        alert("Bạn vui lòng nhập Tên và Lớp để nhận vé thanh xuân nhé!");
+        return;
+    }
+
+    // Tiến hành đọc dữ liệu cũ, cộng thêm 1 và lưu đè lại vào file dữ liệu
+    let currentAdded = parseInt(localStorage.getItem("added_attendance_count")) || 0;
+    currentAdded += 1;
+    localStorage.setItem("added_attendance_count", currentAdded);
+
+    // Cập nhật ngay lập tức con số hiển thị mới lên màn hình
+    updateDisplayCount();
+
+    // Hiển thị tấm vé thông hành cá nhân & Bắn pháo giấy
+    document.getElementById("checkin-form").style.display = "none";
+    document.getElementById("ticket-user-name").innerText = nameInput.toUpperCase();
+    document.getElementById("virtual-ticket").style.display = "block";
+
+    for (let i = 0; i < 50; i++) { createConfetti(); }
+}
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = (window.scrollY + Math.random() * (window.innerHeight / 2)) + 'px';
+        
+        const colors = ['#ffeb3b', '#ff5722', '#e91e63', '#4caf50', '#00bcd4', '#ffffff'];
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = (Math.random() * 8 + 5) + 'px';
+        confetti.style.height = (Math.random() * 8 + 5) + 'px';
+        
+        const duration = Math.random() * 1.5 + 1;
+        confetti.style.animationDuration = `${duration}s`;
+        
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), duration * 1000);
+    }
+
     // Tự động phát nhạc khi tương tác
     window.addEventListener('click', function() {
         var audio = document.getElementById('bg-music');
